@@ -1,7 +1,7 @@
 clc;
 clear;
 close all;
-load('parametros3.mat');
+load('parametros4.mat');
 
 % Equações de espaço de estados do "ramo direto"(Atuador + Dinâmica + Cinemática**)
 A_estab = [-Ra/La -Kb/La 0;Ki/Jm -Bm/Jm 0;(Jr*Ki)/(Jb(1,1)*Jm) -(Jr*Bm)/(Jb(1,1)*Jm) 0];
@@ -48,11 +48,14 @@ end
 %É necessário adicionar mais polos no infinito(Não dominantes) para ficar
 %com a mesma dimensão n da matriz A
 
-polos_apont = [-sigma_apont+1i*wd_apont -sigma_apont-1i*wd_apont -0.001];
-polos_estab = [-sigma_estab+1i*wd_estab -sigma_estab-1i*wd_estab -100*sigma_estab];
+polos_apont = [-sigma_apont+1i*wd_apont -sigma_apont-1i*wd_apont -sigma_apont*10];
+polos_estab = [-sigma_estab+1i*wd_estab -sigma_estab-1i*wd_estab -sigma_estab*0.01];
 
 K_apont = place(A_apont,B_apont,polos_apont);
 K_estab = place(A_estab,B_estab,polos_estab);
+
+placed_poles_estab = eig(A_estab -B_estab*K_estab);
+placed_poles_apont = eig(A_apont - B_apont*K_apont);
 
 function y = poles(Mp,p,ts)
     csi = sqrt(log(Mp)*log(Mp)/(pi^2 + log(Mp)^2));

@@ -1,7 +1,7 @@
 clc;
 clear;
 close all;
-load('parametros3.mat');
+load('parametros4.mat');
 
 % Equações de espaço de estados do "ramo direto"(Atuador + Dinâmica + Cinemática**)
 A_estab = [-Ra/La -Kb/La 0;Ki/Jm -Bm/Jm 0;(Jr*Ki)/(Jb(1,1)*Jm) -(Jr*Bm)/(Jb(1,1)*Jm) 0];
