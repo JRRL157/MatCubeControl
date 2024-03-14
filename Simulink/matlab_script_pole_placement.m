@@ -48,8 +48,8 @@ end
 %É necessário adicionar mais polos no infinito(Não dominantes) para ficar
 %com a mesma dimensão n da matriz A
 
-polos_apont = [-sigma_apont+1i*wd_apont -sigma_apont-1i*wd_apont -sigma_apont*10];
-polos_estab = [-sigma_estab+1i*wd_estab -sigma_estab-1i*wd_estab -sigma_estab*0.01];
+polos_apont = [-sigma_apont+1i*wd_apont -sigma_apont-1i*wd_apont -0.004483323508302];
+polos_estab = [-0.001 -sigma_estab+1i*wd_estab -sigma_estab-1i*wd_estab];
 
 K_apont = place(A_apont,B_apont,polos_apont);
 K_estab = place(A_estab,B_estab,polos_estab);
